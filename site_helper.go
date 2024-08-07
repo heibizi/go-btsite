@@ -13,7 +13,7 @@ type helper struct {
 
 func (sh *helper) GetFaviconPath(site Site, storePath string) (string, error) {
 	// 读取 data/favicon
-	filename := filepath.Join(storePath, "site_favicons", site.Code+".ico")
+	filename := filepath.Join(storePath, site.Code+".ico")
 	_, err := os.Stat(filename)
 	if err != nil && os.IsNotExist(err) {
 		return "", fmt.Errorf("站点 favicon 不存在: %s", filename)
@@ -23,7 +23,7 @@ func (sh *helper) GetFaviconPath(site Site, storePath string) (string, error) {
 
 func (sh *helper) SaveFavicon(data []byte, site *Site, storePath string) error {
 	// 保存到 data/favicon
-	filename := filepath.Join(storePath, "site_favicons", site.Code+".ico")
+	filename := filepath.Join(storePath, site.Code+".ico")
 	// 确保目录存在
 	dir := filepath.Dir(filename)
 	if err := os.MkdirAll(dir, 0755); err != nil {
